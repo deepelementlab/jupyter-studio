@@ -10,8 +10,8 @@
 [![Stars](https://img.shields.io/github/stars/deepelementlab/jupyter-studio?style=for-the-badge&color=ffb86c&logo=github)](https://github.com/deepelementlab/jupyter-studio/stargazers)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue?style=for-the-badge)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/deepelementlab/jupyter-studio?style=for-the-badge&color=success)](https://github.com/deepelementlab/jupyter-studio/releases)
-[![讨论区](https://img.shields.io/github/discussions/deepelementlab/jupyter-studio?style=for-the-badge&logo=github&label=%E8%AE%A8%E8%AE%BA&color=6366f1)](https://github.com/deepelementlab/jupyter-studio/discussions)
-[![微信群](https://img.shields.io/badge/微信群-加入-07C160?style=for-the-badge&logo=wechat&logoColor=white)](docs/assets/wechat-qr.png)
+<!--[![讨论区](https://img.shields.io/github/discussions/deepelementlab/jupyter-studio?style=for-the-badge&logo=github&label=%E8%AE%A8%E8%AE%BA&color=6366f1)](https://github.com/deepelementlab/jupyter-studio/discussions)-->
+<!--[![微信群](https://img.shields.io/badge/微信群-加入-07C160?style=for-the-badge&logo=wechat&logoColor=white)](docs/assets/wechat-qr.png)-->
 [![DeepElementLab](https://img.shields.io/badge/DeepElementLab-%E7%BB%84%E7%BB%87-111827?style=for-the-badge&logo=github)](https://github.com/deepelementlab)
 
 <!--**[English](README.md)** · **[简体中文](README.zh-CN.md)** · **[文档](https://github.com/deepelementlab/jupyter-studio/tree/main/docs)** · **[讨论区](https://github.com/deepelementlab/jupyter-studio/discussions)** · **[路线图](https://github.com/deepelementlab/jupyter-studio/projects)**-->
