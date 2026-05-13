@@ -32,6 +32,11 @@ Notebooks are how the world does data science, ML research, and quantitative wor
 
 **Jupyter Studio brings the Cursor-class AI editing experience *into JupyterLab itself*** — same notebook, same kernel, same plots, now with an agent that can read your cells, run them, see the output, and edit them back.
 
+
+<img width="2606" height="1571" alt="Screenshot - 2026-05-13 17 06 53" src="https://github.com/user-attachments/assets/cecf2d72-d916-4e53-989b-ff0074dc50f3" />
+
+<img width="2606" height="1572" alt="Screenshot - 2026-05-13 17 13 31" src="https://github.com/user-attachments/assets/7e0cf0f0-bd14-478a-97f6-0d05dd56c352" />
+
 - 🧠 **A real agent, not a chatbot** — multi-step plan → execute → verify loop, with cell-level tools (`read_cell`, `edit_cell`, `insert_cell`, `run_cell`, `read_output`).
 - ⌨️ **Cmd+K inline edit** — select code, describe the change, accept the diff. Works inside any cell.
 - 💬 **Chat that knows your notebook** — `@cell`, `@file`, slash commands, full notebook context, streaming responses.
