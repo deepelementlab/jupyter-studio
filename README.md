@@ -30,6 +30,9 @@
 
 Notebooks are how the world does data science, ML research, and quantitative work — but the AI tooling lives somewhere else. You either jump out to ChatGPT and copy-paste, or you leave Jupyter for an IDE and lose your kernels, plots, and state.
 
+<img width="1200" height="1200" alt="banner" src="https://github.com/user-attachments/assets/e926c327-283d-4a3d-9e5a-c2f4815655e7" />
+
+
 **Jupyter Studio brings the Cursor-class AI editing experience *into JupyterLab itself*** — same notebook, same kernel, same plots, now with an agent that can read your cells, run them, see the output, and edit them back.
 
 
