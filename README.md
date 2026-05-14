@@ -230,8 +230,29 @@ cd jupyter-studio
 # Bootstrap everything (venv + python deps + lab build + desktop shell)
 ./install.sh             # macOS / Linux
 ./install.ps1            # Windows PowerShell
+```
 
-# Or step-by-step:
+**Or step-by-step:** if you skip the scripts above, create and activate a virtual environment at the repo root first (default `.venv`, same as `install.ps1`), then run the `pip` / `jlpm` commands below.
+
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Windows (PowerShell; if execution policy blocks scripts, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+Common Windows pitfalls ( stale `jupyter.exe` paths, Yarn `EISDIR`, why `activate.bat` seems ineffective in PowerShell ) are documented in **[Windows & venv troubleshooting](#windows-venv-troubleshooting)** under *Developer quickstart*.
+
+With the environment activated:
+
+```bash
 pip install -e ./clawcode
 pip install -e ./jupyter_studio_ai
 cd open-jupyter/jupyterlab-main && jlpm install && jlpm run build:dev
@@ -239,6 +260,40 @@ jupyter lab --dev-mode
 ```
 
 See [`dev.md`](open-jupyter/dev.md) for the full developer workflow and [`JUPYTERLAB_AI_INTEGRATION.md`](JUPYTERLAB_AI_INTEGRATION.md) for the integration internals.
+
+<a id="windows-venv-troubleshooting"></a>
+
+### Windows & venv troubleshooting (install.ps1 / dev builds)
+
+**Where `Activate.ps1` comes from.** The installer runs `python -m venv`, which creates `.venv\Scripts\Activate.ps1` (and `activate.bat`, etc.). Those files are part of the standard library’s venv machinery — not handwritten by `install.ps1`.
+
+**PowerShell vs `activate.bat`.** In PowerShell, running `activate.bat` normally starts a short-lived `cmd` child process. When that process exits, **your current PowerShell session is unchanged**, so it looks like “activation did nothing.” Prefer:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+If scripts are blocked, run once: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`. Alternatively open **Command Prompt** and run `.venv\Scripts\activate.bat`, or call tools without activating: `.\.venv\Scripts\python.exe -m pip …`.
+
+**Manual “activation” without scripts (PowerShell).** For the current terminal only, you can mirror what `Activate.ps1` does (`PATH` + `VIRTUAL_ENV`; the prompt will not show `(.venv)`):
+
+```powershell
+$venv = (Resolve-Path .\.venv).Path
+$env:VIRTUAL_ENV = $venv
+Remove-Item Env:PYTHONHOME -ErrorAction SilentlyContinue
+$env:PATH = "$venv\Scripts;$env:PATH"
+```
+
+Run these from the repository root; if your virtualenv is not `.venv` (see [`install.ps1`](install.ps1) `-VenvPath`), point `$venv` at that folder instead.
+
+**`jupyter` / `jupyter.exe` still points at another drive (e.g. `D:\…` after cloning to `C:\…`).** On Windows, Pip’s console entry points record the **absolute path to `python.exe` at install time**. Copying a `.venv` folder from another path, or reusing scripts after moving the repo, leaves stale launchers. Symptoms: `Fatal error in launcher: Unable to create process using '"D:\…\python.exe"' …`. Fixes:
+
+- Prefer: **delete `.venv`**, then re-run [`install.ps1`](install.ps1) (or reinstall with `pip`) **only on the final checkout path** — do not copy `.venv` between disks or machines.
+- Quick workaround: **`python -m jupyter lab`** (uses the interpreter in the active env and bypasses the broken `jupyter.exe`).
+- Or regenerate launchers: `python -m pip install --force-reinstall jupyter-core jupyterlab` inside the active venv.
+
+**Editable JupyterLab install fails during `yarn install` (e.g. `EISDIR` / symlink under `node_modules\@jupyterlab\buildutils`).** The monorepo linker needs directory links; on Windows this often breaks if `open-jupyter/jupyterlab-main/node_modules` is **partially stale** or symlink creation is restricted. Try: delete `jupyterlab-main/node_modules`, turn on **Settings → Privacy & security → For developers → Developer Mode**, then rerun `install.ps1` or `pip install -e open-jupyter/jupyterlab-main[dev]`. Lines like `YN0002` peer-dependency hints from Yarn are usually **noise** and not the root failure.
+
 
 <img width="2333" height="1496" alt="Screenshot - 2026-05-14 13 05 23" src="https://github.com/user-attachments/assets/5c6e03ac-361b-46ba-97a7-54d00a8d0fee" />
 
