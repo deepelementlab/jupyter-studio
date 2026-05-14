@@ -1,0 +1,207 @@
+[build-system]
+# 1.27+ improves PEP 660 editable metadata with current pip; avoids missing prepare_metadata_for_build_editable on some setups.
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clawcode"
+version = "0.1.0"
+description = "Python version of OpenCode - AI coding assistant for terminal"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "ClawCode Team" }
+]
+keywords = ["ai", "cli", "tui", "coding-assistant", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+]
+
+dependencies = [
+    # CLI
+    "click>=8.1.0",
+    "typer>=0.12.0",
+
+    # TUI
+    "textual>=0.80.0",
+
+    # Configuration
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+
+    # Database
+    "sqlalchemy>=2.0.0",
+    "aiosqlite>=0.19.0",
+    "alembic>=1.12.0",
+
+    # LLM Providers
+    "anthropic>=0.40.0",
+    "openai>=1.0.0",
+    "google-generativeai>=0.8.0",
+
+    # HTTP
+    "httpx>=0.27.0",
+
+    # JSON
+    "orjson>=3.9.0",
+
+    # Logging
+    "structlog>=24.0.0",
+
+    # Terminal/Rendering
+    "rich>=13.7.0",
+    "pygments>=2.17.0",
+
+    # File operations
+    "wcmatch>=8.5.0",
+    "python-magic>=0.4.27",
+
+    # Utils
+    "aiofiles>=24.0.0",
+    "python-dateutil>=2.8.0",
+
+    # TUI: system clipboard for paste/copy outside bracketed-paste terminals
+    "pyperclip>=1.9.0",
+]
+
+[project.optional-dependencies]
+# Placeholder group for future Claw optional deps; core /claw mode uses main dependencies.
+claw-mode = []
+# Rust PyO3 extension: pip install maturin, then maturin develop in core/engine-py (see llm/tools/performance/README.md).
+native-performance = [
+    "clawcode-performance @ file:./clawcode/llm/tools/performance/core/engine-py",
+]
+# PTY for terminal(background=true, pty=true) on POSIX; without it, pipe mode is used.
+terminal-pty = [
+    "ptyprocess>=0.7.0",
+]
+web = [
+    "firecrawl-py",
+    "pyyaml",
+]
+# OS desktop screenshots + mouse/keyboard (desktop_* tools; requires settings.desktop.enabled)
+desktop = [
+    "mss>=9.0.0",
+    "pyautogui>=0.9.54",
+    "Pillow>=10.0.0",
+]
+environments-docker = [
+    "minisweagent",
+]
+# Monorepo: spec + designteam + clawteam pipeline (``clawcode saddle run``). Path invalid on PyPI; publish saddle separately for releases.
+saddle = [
+    "saddle @ file:../saddle",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.6.0",
+    "mypy>=1.10.0",
+    "pre-commit>=3.7.0",
+]
+# DeepNote: real PDF text extraction for ``PDFKnowledgeImporter`` (``pip install -e ".[deepnote-pdf]"``).
+deepnote-pdf = [
+    "pypdf>=5.0.0",
+]
+
+[project.scripts]
+clawcode = "clawcode.cli.commands:cli"
+clawcode-deepnote-cycle = "clawcode.deepnote.cli:cycle_main"
+clawcode-autonomous-cycle = "clawcode.learning.autonomous_cycle_cli:main"
+clawcode-apply-team-round = "clawcode.learning.apply_team_round_cli:main"
+# Same as ``saddle`` from the ``saddle`` package after ``pip install -e ".[saddle]"`` (Typer CLI).
+saddle = "clawcode.cli.saddle_shim:main"
+
+[project.urls]
+Homepage = "https://github.com/clawcode-ai/clawcode"
+Documentation = "https://github.com/clawcode-ai/clawcode#readme"
+Repository = "https://github.com/clawcode-ai/clawcode"
+Issues = "https://github.com/clawcode-ai/clawcode/issues"
+
+# `native-performance` 使用 `package @ file:...` 形式的直接引用，需显式允许
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["clawcode"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"clawcode/plugin/builtin_plugins" = "clawcode/plugin/builtin_plugins"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    "E",      # clawcodestyle errors
+    "W",      # clawcodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "ARG",    # flake8-unused-arguments
+    "SIM",    # flake8-simplify
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B008",   # do not perform function calls in argument defaults
+    "W191",   # tabs
+    "SIM108", # use ternary operator
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --cov=clawcode --cov-report=term-missing"
+markers = [
+    "integration: optional tests needing external binaries or network (e.g. agent-browser)",
+    "live_llm: optional tests that call a configured LLM provider (set CLAWCODE_RESEARCH_LIVE_TEST=1; ResearchTeam tests also require CLAWCODE_RESEARCH_TEAM_LIVE_TEST=1)",
+]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "anthropic.*",
+    "openai.*",
+    "google.*",
+    "textual.*",
+    "clawcode_performance",
+    "mss.*",
+    "pyautogui.*",
+    "saddle.*",
+]
+ignore_missing_imports = true

@@ -1,0 +1,18 @@
+role_id: designteam-visual-ops-designer
+summary: Brand-consistent growth and marketing surfaces; conversion-oriented layout with IXD/UI alignment.
+
+primary_outputs:
+  系统设计文档:
+    "品牌/视觉与运营触点": primary
+    "背景与目标 / 成功标准": consulted
+
+method_hints:
+  - landing_page_patterns
+  - cjm_light
+  - conversion_metrics
+
+references:
+  - "../UI/README.md"
+
+anti_patterns:
+  - "Campaign pages that break core product IA without documenting it"

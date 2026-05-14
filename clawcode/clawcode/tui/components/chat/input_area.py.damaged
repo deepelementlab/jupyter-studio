@@ -1,0 +1,66 @@
+"""Input area component for the chat screen.
+
+This module provides an input widget with Vim-style key bindings
+and support for multi-line input and file attachments.
+"""
+
+from __future__ import annotations
+
+import asyncio
+from collections import deque
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, ClassVar
+
+from textual import events, on
+from textual.containers import Horizontal, Vertical
+from textual.widgets import TextArea, Static, Button
+from rich.text import Text
+
+if TYPE_CHECKING:
+    from .input_history_store import InputHistoryStore
+
+from ..dialogs.file_picker import FileAttachment
+from ...at_file_complete import (
+    AT_MAX_RESULTS,
+    at_mention_parse,
+    filter_file_candidates,
+)
+from ...builtin_slash import (
+    filter_commands,
+    longest_common_prefix,
+    slash_autocomplete_hidden_union,
+    slash_suggest_query,
+)
+from ...clipboard_os import clipboard_read_files, clipboard_read_text
+
+# 与底部 HUD 参考布局一致：快捷键行在会话 HUD 上一行（见 OpenCodeInput / MessageInput）
+DEFAULT_INPUT_HELP_LINE = (
+    "press enter to send the message, write \\ and enter to add a new line"
+)
+SLASH_INPUT_HELP_SUFFIX = " | / commands: tab · ↑↓ | @ file: tab · ↑↓ | Tab: autocomplete"
+
+# App-level actions while focus is in the input subtree (TextArea may swallow keys before App BINDINGS).
+# Help: Textual maps Ctrl+H (ASCII 8) to ``backspace``, same as the Backspace key — we cannot bind
+# help to ``backspace`` without breaking delete. Use F1, Alt+H, Ctrl+/, or Ctrl+Shift+/ (Ctrl+? on US).
+MESSAGE_INPUT_GLOBAL_SHORTCUTS: dict[str, str] = {
+    "ctrl+h": "action_show_help",
+    "f1": "action_show_help",
+    "question_mark": "action_show_help",
+    "ctrl+slash": "action_show_help",
+    "ctrl+question": "action_show_help",
+    "ctrl+shift+slash": "action_show_help",
+    "alt+h": "action_show_help",
+    "ctrl+l": "action_show_logs",
+    "ctrl+n": "action_new_session",
+    "ctrl+a": "action_switch_session",
+    "ctrl+o": "action_change_model",
+    "ctrl+t": "action_toggle_theme",
+    "ctrl+shift+t": "action_show_theme_selector",
+    "ctrl+k": "action_show_commands",
+    "ctrl+shift+h": "action_show_history",
+    "f2": "action_init_project",
+    "ctrl+m": "action_toggle_mouse_mode",
+    "ctrl+d": "action_switch_display_mode",
+    "ctrl+shift+s": "action_show_session_panel",
+    "ctrl+q": "action_quit",
+}

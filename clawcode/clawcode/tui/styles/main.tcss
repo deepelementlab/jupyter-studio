@@ -1,0 +1,687 @@
+/* ClawCode Main Stylesheet - Strict Claude-like Neutral Theme */
+
+/* Global settings */
+Screen {
+    background: #11141c;
+}
+
+/* Header */
+Header {
+    background: #171c27;
+    text-align: center;
+    text-style: bold;
+    dock: top;
+    height: 1;
+    padding: 0 1;
+}
+
+Header.-tint {
+    text-style: bold;
+    background: #171c27;
+}
+
+/* Footer */
+Footer {
+    background: #171c27;
+    text-align: center;
+    dock: bottom;
+    padding: 0 1;
+}
+
+/* Main container */
+#main_container {
+    height: 100%;
+    width: 100%;
+}
+
+/* Chat container */
+#chat_container {
+    height: 1fr;
+    width: 1fr;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 25;
+    min-width: 20;
+    max-width: 40;
+    dock: left;
+    background: #151a24;
+    border-right: round #303949;
+}
+
+/* Chat area */
+#chat_area {
+    width: 1fr;
+    height: 1fr;
+}
+
+/* Status bar in chat */
+#chat_status_bar {
+    dock: top;
+    height: 1;
+    padding: 0 1;
+    background: #171c27;
+    color: #92a0b4;
+    text-style: none;
+}
+
+/* 与输入框同列于 #input_hud_stack，由容器 dock bottom，此处不再 dock */
+#input_hud_stack {
+    dock: bottom;
+    height: auto;
+    width: 100%;
+}
+
+/* HUD: 5 行内容 + 第 6 行空白缓冲，避免 CJK/终端缩放时末行字形被裁切 */
+#bottom_status_bar {
+    height: 6;
+    min-height: 6;
+    max-height: 6;
+    padding: 0 1;
+    overflow: hidden;
+    background: #171c27;
+    color: #92a0b4;
+}
+
+#sidebar .header {
+    padding: 0 1;
+    margin: 0 0 1 0;
+    color: #a8bbd6;
+    text-style: bold;
+}
+
+/* Message list */
+#message_list {
+    height: 1fr;
+    width: 1fr;
+    padding: 1;
+    background: #11141c;
+}
+
+/* Claude Code-like "New output" jump button */
+.new-output-hint {
+    dock: bottom;
+    height: 1;
+    margin: 0 1 1 1;
+    padding: 0 1;
+    background: #222936;
+    color: #d4dbe8;
+    border: round #3f4a5c;
+}
+
+.new-output-hint:hover {
+    background: #2a3343;
+    color: #e7ecf5;
+}
+
+/* Welcome panel (Rich); full column width — avoid horizontal padding so Rich/Textual widths match */
+#welcome_message {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0 0;
+}
+
+/* Input area */
+#message_input {
+    dock: bottom;
+    height: auto;
+    margin: 0;
+    background: #11141c;
+    border: round #303949;
+    padding: 0 1;
+}
+
+#message_list_host {
+    padding: 0 1;
+}
+
+/* Input help (three lines: send hint; slash/@; history shortcuts) */
+.input_help {
+    dock: bottom;
+    height: 3;
+    min-height: 3;
+    color: #92a0b4;
+    padding: 0 1;
+    text-align: left;
+    overflow: hidden;
+}
+
+/* Individual message (Claude Code-like compact spacing) */
+.message {
+    margin: 0;
+    padding: 0 1;
+    height: auto;
+}
+
+.message.user {
+    color: #d8dee9;
+    margin: 1 0 0 0;
+}
+
+.message.assistant {
+    color: #d8dee9;
+}
+
+.message.system {
+    color: #a6e3a1;
+}
+
+.message.tool {
+    color: #98a2b3;
+    padding: 0 1;
+}
+
+.message.error {
+    color: #e3a6b5;
+    margin: 0 0 1 0;
+}
+
+.message.thinking {
+    color: #7f8796;
+    text-style: italic;
+}
+
+/* Input area */
+#input_area {
+    dock: bottom;
+    height: auto;
+    padding: 0 1;
+    background: #151a24;
+    border-top: round #303949;
+}
+
+#opencode_input,
+#claude_input,
+#message_input_widget {
+    margin: 0;
+    padding: 0 1;
+    background: #11141c;
+    border-top: round #303949;
+}
+
+#opencode_input TextArea,
+#claude_input TextArea,
+#message_input_widget TextArea {
+    border: none;
+    background: #11141c;
+    color: #d8dee9;
+}
+
+/* Input field */
+#message_input {
+    margin: 1 0;
+}
+
+/* Input help text */
+.input_help {
+    height: 3;
+    min-height: 3;
+    align: right middle;
+    color: #92a0b4;
+    padding: 0 1;
+    overflow: hidden;
+}
+
+/* Buttons */
+Button {
+    background: #232a37;
+    color: #d9e0ec;
+    text-style: bold;
+    border: round #3f4a5c;
+    padding: 0 2;
+    margin: 0 1;
+}
+
+Button:hover {
+    background: #2c3545;
+    color: #eef3fa;
+}
+
+Button.-primary {
+    background: #2f3d56;
+    border: round #4e627f;
+    color: #e5edf9;
+}
+
+Button.-error {
+    background: #4f2c37;
+    border: round #784756;
+    color: #f5dce3;
+}
+
+Button.-success {
+    background: #253c35;
+    border: round #3d6358;
+    color: #d7ece5;
+}
+
+/* Quit dialog: align with Claude Code dark subtle style */
+QuitDialog {
+    align: center middle;
+}
+
+QuitDialog Vertical {
+    background: #151a24;
+    border: round #3f4a5c;
+    padding: 1 2;
+}
+
+#quit_message {
+    color: #d8dee9;
+    margin: 0 0 1 0;
+}
+
+#quit_buttons {
+    align: center middle;
+    height: auto;
+}
+
+#quit_yes, #quit_no {
+    width: 20;
+}
+
+/* Permission dialog */
+#permission_dialog {
+    width: 80%;
+    height: auto;
+    max-height: 32;
+    background: #151a24;
+    border: round #303949;
+    padding: 1;
+}
+
+#permission_body_scroll {
+    height: 1fr;
+    min-height: 4;
+    max-height: 22;
+}
+
+.permission_header {
+    text-style: bold;
+    text-align: center;
+    color: #d8dee9;
+    margin-bottom: 1;
+}
+
+.permission_description {
+    margin: 1 0;
+}
+
+.permission_path {
+    color: #a8bbd6;
+    text-style: bold;
+    margin: 1 0;
+}
+
+.permission_buttons {
+    height: 3;
+    align: center middle;
+    margin-top: 1;
+}
+
+/* Help screen */
+#help_screen {
+    padding: 2;
+}
+
+.help_section {
+    margin: 1 0;
+}
+
+.help_title {
+    color: #d8dee9;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.help_key {
+    color: #a8bbd6;
+    text-style: bold;
+}
+
+.help_description {
+    margin-left: 2;
+    color: #d8dee9;
+}
+
+/* Logs screen */
+#logs_content {
+    height: 1fr;
+    overflow-y: auto;
+    padding: 1;
+}
+
+.log_entry {
+    margin: 0 0;
+    padding: 0 1;
+}
+
+.log_entry.debug {
+    color: #7f8796;
+}
+
+.log_entry.info {
+    color: #d8dee9;
+}
+
+.log_entry.warning {
+    color: #d3c09a;
+}
+
+.log_entry.error {
+    color: #e3a6b5;
+}
+
+/* Session list */
+#session_list {
+    height: 1fr;
+    overflow-y: auto;
+}
+
+.session_item {
+    padding: 0 1;
+    margin: 0 0;
+    color: #d8dee9;
+}
+
+.session_item:hover {
+    background: #232a37;
+    color: #e7ecf5;
+}
+
+.session_item.selected {
+    background: #2f3d56;
+    color: #eaf1ff;
+    text-style: bold;
+}
+
+/* Loading indicator */
+.loading {
+    color: #a8bbd6;
+    text-style: bold;
+}
+
+/* Code blocks */
+.code_block {
+    background: #11141c;
+    border: round #303949;
+    padding: 1;
+    margin: 1 0;
+    text-style: none;
+}
+
+.code_language {
+    color: #7f8796;
+    text-style: italic;
+    margin-bottom: 1;
+}
+
+/* Scrollbar */
+ScrollView > VerticalScrollbar {
+    background: #151a24;
+    color: #7f8796;
+}
+
+ScrollView > VerticalScrollbar:hover {
+    background: #232a37;
+    color: #d8dee9;
+}
+
+ScrollView > VerticalScrollbar > .thumb {
+    background: #5e6878;
+}
+
+ScrollView > VerticalScrollbar:hover > .thumb {
+    background: #a0acbf;
+}
+
+/* Session dialog */
+#session_dialog {
+    width: 80%;
+    height: 80%;
+    background: #151a24;
+    border: round #303949;
+    padding: 1;
+}
+
+.dialog_header {
+    text-style: bold;
+    text-align: center;
+    color: #d8dee9;
+    margin-bottom: 1;
+}
+
+.dialog_input {
+    margin: 1 0;
+}
+
+/* File picker search: blue border instead of theme primary (often purple) */
+#file_search {
+    border: tall #3d6ba8;
+}
+
+#file_search:focus {
+    border: tall #5c9cf5;
+}
+
+/* Model dialog */
+#model_dialog {
+    width: 80%;
+    height: 80%;
+    background: #151a24;
+    border: round #303949;
+    padding: 1;
+}
+
+.dialog_info {
+    color: #7f8796;
+    margin: 1 0;
+}
+
+/* Commands dialog */
+#commands_dialog {
+    width: 80%;
+    height: 80%;
+    background: #151a24;
+    border: round #303949;
+    padding: 1;
+}
+
+.command_item {
+    padding: 0 1;
+}
+
+/* Dialog buttons */
+#session_buttons,
+#model_buttons,
+#commands_buttons {
+    height: 3;
+    align: center middle;
+    margin-top: 1;
+}
+
+/* ============================
+   Display Modes (layout modes)
+   ============================ */
+
+/* Default: keep optional panels hidden until mode is applied */
+#opencode_input {
+    display: none;
+}
+
+#claude_input {
+    display: none;
+}
+
+#right_panel_container {
+    width: 36;
+    min-width: 24;
+    max-width: 90;
+    display: none;
+}
+
+#right_panel_grip {
+    width: 1;
+    height: 1fr;
+    display: none;
+}
+
+#right_panel_grip:hover {
+    background-tint: 12%;
+}
+
+#info_panel {
+    height: auto;
+}
+
+#plan_panel {
+    height: auto;
+    min-height: 12;
+    max-height: 22;
+    padding: 1 1;
+    margin: 0 0 1 0;
+    background: #151a24;
+    border: round #303949;
+}
+
+#plan_panel_title {
+    text-style: bold;
+    color: #e5edf9;
+}
+
+#plan_panel_meta {
+    color: #9fb0c9;
+    margin-bottom: 1;
+}
+
+#plan_panel_body_scroll {
+    height: 1fr;
+    min-height: 3;
+    scrollbar-size-vertical: 1;
+}
+
+#plan_panel_body {
+    height: auto;
+    color: #d9e0ec;
+    padding: 0 0 1 0;
+}
+
+#plan_panel_footer {
+    color: #8f9fb7;
+    margin: 0 0 1 0;
+}
+
+#plan_panel_actions {
+    height: auto;
+    width: 1fr;
+    min-height: 3;
+    scrollbar-size-horizontal: 1;
+    scrollbar-size-vertical: 0;
+}
+
+/* Plan actions: narrower than original 12×3; width ≥10 fits "Resume" (6) with round border + Rich padding on typical layouts. */
+#plan_panel_actions Button {
+    margin: 0 1 0 0;
+    min-width: 10;
+    width: 10;
+    height: 3;
+    padding: 0 0;
+    border: round #3a465b;
+    background: #202734;
+    color: #c8d4e8;
+    text-style: dim;
+}
+
+#plan_panel_actions Button:hover {
+    border: round #5a76a8;
+    background: #273248;
+    color: #e8eef9;
+}
+
+#plan_panel_actions Button.-primary {
+    border: round #4f7cff;
+    background: #2a3f7a;
+    text-style: dim;
+}
+
+#plan_panel_actions Button.-success {
+    border: round #3b9f7a;
+    background: #1f3d34;
+    text-style: dim;
+}
+
+#code_awareness_panel {
+    height: 1fr;
+    min-height: 10;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-size-horizontal: 0;
+    scrollbar-size-vertical: 1;
+}
+
+#bottom_status_bar {
+    display: none;
+}
+
+/* === Classic Mode === */
+.mode-classic #sidebar { display: block; }
+.mode-classic #right_panel_container { display: none; }
+.mode-classic #opencode_input { display: none; }
+.mode-classic #claude_input { display: none; }
+.mode-classic #message_input_widget { display: block; }
+.mode-classic #chat_status_bar { display: block; }
+.mode-classic #bottom_status_bar { display: none; }
+
+/* === Default Mode === */
+.mode-opencode #sidebar { display: none; }
+.mode-opencode #right_panel_container { display: block; }
+.mode-opencode #opencode_input { display: block; }
+.mode-opencode #claude_input { display: none; }
+.mode-opencode #message_input_widget { display: none; }
+.mode-opencode #chat_status_bar { display: none; }
+.mode-opencode #bottom_status_bar { display: block; }
+
+/* === Clawcode default (same layout as opencode) === */
+.mode-clawcode #sidebar { display: none; }
+.mode-clawcode #right_panel_container { display: block; }
+.mode-clawcode #opencode_input { display: block; }
+.mode-clawcode #claude_input { display: none; }
+.mode-clawcode #message_input_widget { display: none; }
+.mode-clawcode #chat_status_bar { display: none; }
+.mode-clawcode #bottom_status_bar { display: block; }
+
+/* === Minimal Mode === */
+.mode-minimal #sidebar { display: none; }
+.mode-minimal #right_panel_container { display: none; }
+.mode-minimal #opencode_input { display: block; }
+.mode-minimal #claude_input { display: none; }
+.mode-minimal #message_input_widget { display: none; }
+.mode-minimal #chat_status_bar { display: none; }
+.mode-minimal #bottom_status_bar { display: block; }
+
+/* === Claude Code Mode === */
+.mode-claude #sidebar { display: none; }
+.mode-claude #right_panel_container { display: none; }
+.mode-claude #opencode_input { display: none; }
+.mode-claude #claude_input { display: block; }
+.mode-claude #message_input_widget { display: none; }
+.mode-claude #chat_status_bar { display: none; }
+.mode-claude #bottom_status_bar { display: block; }
+
+/* === Zen Mode === */
+.mode-zen #sidebar { display: none; }
+.mode-zen #right_panel_container { display: none; }
+.mode-zen #opencode_input { display: block; }
+.mode-zen #claude_input { display: none; }
+.mode-zen #message_input_widget { display: none; }
+.mode-zen #chat_status_bar { display: none; }
+.mode-zen #bottom_status_bar { display: none; }
+.mode-zen { align: center top; }
+.mode-zen #chat_area { width: 1fr; max-width: 100; }
+
+/* Per-mode global overrides are applied programmatically
+   via _apply_display_mode_chrome() and apply_chrome_to_modal().
+   CSS descendant selectors can NOT reach ancestors (Screen/Header/Footer)
+   or sibling ModalScreens from .mode-* on #chat_container. */

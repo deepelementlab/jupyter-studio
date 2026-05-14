@@ -1,0 +1,18 @@
+role_id: designteam-product-designer
+summary: Problem frame, outcomes, success metrics, scope IN/OUT, and UX–business prioritization.
+
+primary_outputs:
+  系统设计文档:
+    "背景与目标 / 成功标准": primary
+    "用户与场景": consulted
+    "体验原则、无障碍与风险": consulted
+
+method_hints:
+  - lean_ux
+  - opportunity_sizing
+  - success_metrics
+
+references: []
+
+anti_patterns:
+  - "Replacing IXD-owned flow specs with goals-only prose"

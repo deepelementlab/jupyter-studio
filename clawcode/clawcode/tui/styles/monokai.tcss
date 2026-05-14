@@ -1,0 +1,431 @@
+/* ClawCode Monokai Theme */
+
+/* Global settings */
+Screen {
+    background: #272822;
+}
+
+/* Header */
+Header {
+    background: #3e3d32;
+    text-align: center;
+    text-style: bold;
+    dock: top;
+    height: 1;
+    padding: 0 1;
+}
+
+Header.-tint {
+    text-style: bold;
+    background: #3e3d32;
+}
+
+/* Footer */
+Footer {
+    background: #3e3d32;
+    text-align: center;
+    dock: bottom;
+    padding: 0 1;
+}
+
+/* Main container */
+#main_container {
+    height: 100%;
+    width: 100%;
+}
+
+/* Chat container */
+#chat_container {
+    height: 1fr;
+    width: 1fr;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 25;
+    min-width: 20;
+    max-width: 40;
+    dock: left;
+    background: #3e3d32;
+    border-right: thick #49483e;
+}
+
+/* Chat area */
+#chat_area {
+    width: 1fr;
+    height: 1fr;
+}
+
+/* Message list */
+#message_list {
+    height: 1fr;
+    width: 1fr;
+    padding: 1;
+    background: #272822;
+}
+
+/* Welcome message */
+#welcome_message {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0 0;
+}
+
+/* Input area */
+#message_input {
+    dock: bottom;
+    height: auto;
+    margin: 1;
+    background: #272822;
+    border: solid #49483e;
+    padding: 1;
+}
+
+/* Input help */
+.input_help {
+    dock: bottom;
+    height: 3;
+    min-height: 3;
+    color: #75715e;
+    padding: 0 1;
+    text-align: right;
+    overflow: hidden;
+}
+
+/* Individual message */
+.message {
+    margin: 1 0;
+    padding: 1;
+    background: #3e3d32;
+    border: solid #49483e;
+    border-title-align: left;
+    border-title-color: #75715e;
+    border-subtitle-color: #75715e;
+}
+
+.message.user {
+    border-title-color: #ae81ff;
+    border-title-style: bold;
+}
+
+.message.assistant {
+    border-title-color: #66d9ef;
+    border-title-style: bold;
+}
+
+.message.system {
+    border-title-color: #a6e22e;
+    border-title-style: bold;
+}
+
+.message.tool {
+    background: transparent;
+    border: none;
+    padding: 0 2;
+}
+
+/* Message content */
+.message_content {
+    margin-top: 1;
+    text-style: none;
+}
+
+/* Thinking content */
+.thinking_content {
+    color: #75715e;
+    text-style: italic;
+    margin-top: 1;
+    padding: 0 2;
+}
+
+/* Tool call display */
+.tool_call {
+    background: #3e3d32;
+    border: solid #49483e;
+    padding: 0 1;
+    margin: 0 2;
+}
+
+.tool_call_name {
+    color: #66d9ef;
+    text-style: bold;
+}
+
+.tool_call_input {
+    color: #75715e;
+    margin-left: 2;
+}
+
+/* Tool result display */
+.tool_result {
+    background: #3e3d32;
+    border: solid #49483e;
+    padding: 0 1;
+    margin: 0 2;
+}
+
+.tool_result_content {
+    margin-top: 1;
+    padding: 0 2;
+}
+
+/* Input area */
+#input_area {
+    dock: bottom;
+    height: auto;
+    padding: 0 1;
+    background: #3e3d32;
+    border-top: thick #49483e;
+}
+
+/* Input field */
+#message_input {
+    margin: 1 0;
+}
+
+/* Input help text */
+.input_help {
+    height: 3;
+    min-height: 3;
+    align: right middle;
+    color: #75715e;
+    padding: 0 1;
+    overflow: hidden;
+}
+
+/* Buttons */
+Button {
+    background: #ae81ff;
+    color: #272822;
+    text-style: bold;
+    border: none;
+    padding: 0 2;
+    margin: 0 1;
+}
+
+Button:hover {
+    background: #66d9ef;
+}
+
+Button.-primary {
+    background: #ae81ff;
+}
+
+Button.-error {
+    background: #f92672;
+}
+
+Button.-success {
+    background: #a6e22e;
+}
+
+/* Permission dialog */
+#permission_dialog {
+    width: 80%;
+    height: auto;
+    max-height: 32;
+    background: #3e3d32;
+    border: thick #49483e;
+    padding: 1;
+}
+
+#permission_body_scroll {
+    height: 1fr;
+    min-height: 4;
+    max-height: 22;
+}
+
+.permission_header {
+    text-style: bold;
+    text-align: center;
+    color: #e6db74;
+    margin-bottom: 1;
+}
+
+.permission_description {
+    margin: 1 0;
+}
+
+.permission_path {
+    color: #66d9ef;
+    text-style: bold;
+    margin: 1 0;
+}
+
+.permission_buttons {
+    height: 3;
+    align: center middle;
+    margin-top: 1;
+}
+
+/* Help screen */
+#help_screen {
+    padding: 2;
+}
+
+.help_section {
+    margin: 1 0;
+}
+
+.help_title {
+    color: #ae81ff;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.help_key {
+    color: #66d9ef;
+    text-style: bold;
+}
+
+.help_description {
+    margin-left: 2;
+    color: #f8f8f2;
+}
+
+/* Logs screen */
+#logs_content {
+    height: 1fr;
+    overflow-y: auto;
+    padding: 1;
+}
+
+.log_entry {
+    margin: 0 0;
+    padding: 0 1;
+}
+
+.log_entry.debug {
+    color: #75715e;
+}
+
+.log_entry.info {
+    color: #f8f8f2;
+}
+
+.log_entry.warning {
+    color: #e6db74;
+}
+
+.log_entry.error {
+    color: #f92672;
+}
+
+/* Session list */
+#session_list {
+    height: 1fr;
+    overflow-y: auto;
+}
+
+.session_item {
+    padding: 1;
+    margin: 0 1;
+}
+
+.session_item:hover {
+    background: #ae81ff;
+    color: #272822;
+}
+
+.session_item.selected {
+    background: #66d9ef;
+    color: #272822;
+    text-style: bold;
+}
+
+/* Loading indicator */
+.loading {
+    color: #66d9ef;
+    text-style: bold;
+}
+
+/* Code blocks */
+.code_block {
+    background: #272822;
+    border: solid #49483e;
+    padding: 1;
+    margin: 1 0;
+    text-style: none;
+}
+
+.code_language {
+    color: #75715e;
+    text-style: italic;
+    margin-bottom: 1;
+}
+
+/* Scrollbar */
+ScrollView > VerticalScrollbar {
+    background: #3e3d32;
+    color: #75715e;
+}
+
+ScrollView > VerticalScrollbar:hover {
+    background: #49483e;
+    color: #f8f8f2;
+}
+
+ScrollView > VerticalScrollbar > .thumb {
+    background: #75715e;
+}
+
+ScrollView > VerticalScrollbar:hover > .thumb {
+    background: #f8f8f2;
+}
+
+/* Session dialog */
+#session_dialog {
+    width: 80%;
+    height: 80%;
+    background: #3e3d32;
+    border: thick #49483e;
+    padding: 1;
+}
+
+.dialog_header {
+    text-style: bold;
+    text-align: center;
+    color: #ae81ff;
+    margin-bottom: 1;
+}
+
+.dialog_input {
+    margin: 1 0;
+}
+
+/* Model dialog */
+#model_dialog {
+    width: 80%;
+    height: 80%;
+    background: #3e3d32;
+    border: thick #49483e;
+    padding: 1;
+}
+
+.dialog_info {
+    color: #75715e;
+    margin: 1 0;
+}
+
+/* Commands dialog */
+#commands_dialog {
+    width: 80%;
+    height: 80%;
+    background: #3e3d32;
+    border: thick #49483e;
+    padding: 1;
+}
+
+.command_item {
+    padding: 0 1;
+}
+
+/* Dialog buttons */
+#session_buttons,
+#model_buttons,
+#commands_buttons {
+    height: 3;
+    align: center middle;
+    margin-top: 1;
+}

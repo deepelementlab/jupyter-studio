@@ -1,0 +1,17 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "clawcode-performance"
+version = "0.1.0"
+description = "Rust-backed grep and glob acceleration for Clawcode (PyO3)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.maturin]
+module-name = "clawcode_performance"

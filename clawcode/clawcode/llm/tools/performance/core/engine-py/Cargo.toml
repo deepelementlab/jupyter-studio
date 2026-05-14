@@ -1,0 +1,18 @@
+[package]
+name = "clawcode-performance"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "PyO3 extension exposing gsd-grep and fast glob for Clawcode"
+
+[lib]
+name = "clawcode_performance"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.28", features = ["extension-module"] }
+gsd-grep = { path = "../grep" }
+globset = "0.4"
+ignore = "0.4"

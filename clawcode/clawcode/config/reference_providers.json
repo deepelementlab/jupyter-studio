@@ -1,0 +1,253 @@
+{
+  "providers": {
+    "anthropic": {
+      "models": [
+        "claude-sonnet-4-20250514",
+        "claude-3-5-sonnet-20241022",
+        "claude-3-5-haiku-20241022",
+        "claude-3-opus-20240229"
+      ]
+    },
+    "anthropic_shengsuanyun": {
+      "models": [
+        "anthropic/claude-sonnet-4.6"
+      ]
+    },
+    "openai": {
+      "models": [
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-4-turbo",
+        "o4-mini",
+        "o3-mini"
+      ]
+    },
+    "gemini": {
+      "models": [
+        "gemini-2.0-flash",
+        "gemini-1.5-pro",
+        "gemini-1.5-flash"
+      ]
+    },
+    "groq": {
+      "models": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "mixtral-8x7b-32768"
+      ]
+    },
+    "openrouter": {
+      "models": [
+        "openai/gpt-4o",
+        "anthropic/claude-3.5-sonnet",
+        "google/gemini-pro-1.5",
+        "deepseek/deepseek-chat",
+        "meta-llama/llama-3.3-70b-instruct"
+      ]
+    },
+    "xai": {
+      "models": [
+        "grok-2-latest",
+        "grok-2-vision-latest",
+        "grok-beta"
+      ]
+    },
+    "azure_openai": {
+      "models": [
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-35-turbo"
+      ]
+    },
+    "bedrock": {
+      "models": [
+        "anthropic.claude-3-5-sonnet-20241022-v2:0",
+        "anthropic.claude-3-haiku-20240307-v1:0"
+      ]
+    },
+    "copilot": {
+      "models": [
+        "gpt-4o"
+      ]
+    },
+    "openai_deepseek": {
+      "models": [
+        "deepseek-chat",
+        "deepseek-reasoner"
+      ]
+    },
+    "openai_glm": {
+      "models": [
+        "glm-5",
+        "glm-4-plus",
+        "glm-4-air"
+      ]
+    },
+    "openai_qwen": {
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_qwen_intl": {
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_qwen_us": {
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_qwen_finance": {
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_moonshot": {
+      "models": [
+        "moonshot-v1-8k",
+        "moonshot-v1-32k",
+        "moonshot-v1-128k",
+        "kimi-k2-turbo-preview",
+        "kimi-k2.5"
+      ]
+    },
+    "openai_mistral": {
+      "models": [
+        "mistral-large-latest",
+        "mistral-small-latest",
+        "pixtral-12b-2409",
+        "codestral-latest"
+      ]
+    },
+    "openai_together": {
+      "models": [
+        "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+        "Qwen/Qwen2.5-72B-Instruct-Turbo"
+      ]
+    },
+    "openai_fireworks": {
+      "models": [
+        "accounts/fireworks/models/llama-v3p3-70b-instruct",
+        "accounts/fireworks/models/qwen2p5-72b-instruct"
+      ]
+    },
+    "openai_siliconflow": {
+      "models": [
+        "deepseek-ai/DeepSeek-V3",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ]
+    },
+    "openai_novita": {
+      "models": [
+        "deepseek/deepseek_v3",
+        "meta-llama/llama-3.3-70b-instruct"
+      ]
+    },
+    "openai_perplexity": {
+      "models": [
+        "sonar",
+        "sonar-pro",
+        "sonar-reasoning"
+      ]
+    },
+    "openai_cohere": {
+      "models": [
+        "command-r-plus",
+        "command-r",
+        "command-r7b-12-2024"
+      ]
+    },
+    "openai_minimax": {
+      "models": [
+        "MiniMax-M2.7",
+        "MiniMax-M2.7-highspeed",
+        "MiniMax-M2.5",
+        "MiniMax-M2.5-highspeed",
+        "MiniMax-M2.1",
+        "MiniMax-M2.1-highspeed",
+        "MiniMax-M2",
+        "abab6.5s-chat",
+        "abab6.5g-chat",
+        "abab6.5t-chat"
+      ]
+    },
+    "openai_baichuan": {
+      "models": [
+        "Baichuan4-Turbo",
+        "Baichuan3-Turbo"
+      ]
+    },
+    "openai_stepfun": {
+      "models": [
+        "step-2-16k",
+        "step-1-8k"
+      ]
+    },
+    "openai_deepinfra": {
+      "models": [
+        "meta-llama/Meta-Llama-3.1-70B-Instruct",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ]
+    },
+    "openai_nebius": {
+      "models": [
+        "meta-llama/Meta-Llama-3.1-70B-Instruct-fast"
+      ]
+    },
+    "openai_lepton": {
+      "models": [
+        "llama3-70b"
+      ]
+    },
+    "openai_vertex": {
+      "models": [
+        "gemini-1.5-pro",
+        "gemini-1.5-flash"
+      ]
+    },
+    "openai_volcengine": {
+      "models": [
+        "doubao-seed-2-0-lite-260215",
+        "doubao-seedream-5-0-260128",
+        "doubao-seedance-2-0-260128"
+      ]
+    }
+  }
+}

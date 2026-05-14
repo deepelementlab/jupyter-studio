@@ -1,0 +1,19 @@
+role_id: designteam-user-researcher
+summary: Frame research questions, evidence gaps, and user signals; feed personas and journey assumptions.
+
+primary_outputs:
+  系统设计文档:
+    "用户与场景": primary
+    "研究结论摘要": primary
+    "开放问题、验证计划": consulted
+
+method_hints:
+  - interviews
+  - journey_map
+  - competitive_scan
+  - assumption_mapping
+
+references: []
+
+anti_patterns:
+  - "Guessing personas without labeling assumptions"

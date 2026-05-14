@@ -1,0 +1,18 @@
+role_id: designteam-ui-designer
+summary: Layout hierarchy, patterns, components, and density aligned to a design system.
+
+primary_outputs:
+  系统设计文档:
+    "界面与组件层说明": primary
+    "信息架构与关键流程": consulted
+
+method_hints:
+  - design_system_patterns
+  - responsive_layout
+  - progressive_disclosure
+
+references:
+  - "../UI/catalog.json"
+
+anti_patterns:
+  - "One-off components where a pattern exists"
