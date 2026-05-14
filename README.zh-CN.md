@@ -30,6 +30,8 @@
 
 数据科学、机器学习、量化研究的工作流仍然以 Notebook 为中心，但 AI 编码工具几乎都在 Notebook 之外——要么跳到 ChatGPT 复制粘贴，要么离开 Jupyter 去 IDE，于是丢掉了 Kernel、变量、图表、状态。
 
+<img width="1200" height="1200" alt="banner" src="https://github.com/user-attachments/assets/e926c327-283d-4a3d-9e5a-c2f4815655e7" />
+
 **Jupyter Studio 把 Cursor 级别的 AI 编码体验直接搬进了 JupyterLab**——同一个 Notebook、同一个 Kernel、同一张图，再加一个能读取、运行、改写你 Cell 的 Agent。
 
 <img width="2606" height="1571" alt="Screenshot - 2026-05-13 17 06 53" src="https://github.com/user-attachments/assets/cecf2d72-d916-4e53-989b-ff0074dc50f3" />
@@ -235,6 +237,8 @@ jupyter lab --dev-mode
 ```
 
 完整开发流程见 [`dev.md`](open-jupyter/dev.md)，集成实现细节见 [`JUPYTERLAB_AI_INTEGRATION.md`](JUPYTERLAB_AI_INTEGRATION.md)。
+
+<img width="2333" height="1496" alt="Screenshot - 2026-05-14 13 05 23" src="https://github.com/user-attachments/assets/5c6e03ac-361b-46ba-97a7-54d00a8d0fee" />
 
 ---
 
