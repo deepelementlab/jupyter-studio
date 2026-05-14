@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfigbase",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../ai-coder" },
+    { "path": "../application" },
+    { "path": "../apputils" },
+    { "path": "../cells" },
+    { "path": "../codeeditor" },
+    { "path": "../codemirror" },
+    { "path": "../completer" },
+    { "path": "../coreutils" },
+    { "path": "../notebook" },
+    { "path": "../rendermime" },
+    { "path": "../services" },
+    { "path": "../translation" },
+    { "path": "../ui-components" }
+  ]
+}

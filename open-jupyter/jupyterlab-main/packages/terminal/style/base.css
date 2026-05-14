@@ -1,0 +1,32 @@
+/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Distributed under the terms of the Modified BSD License.
+|----------------------------------------------------------------------------*/
+
+.jp-Terminal {
+  min-width: 240px;
+  min-height: 120px;
+}
+
+.jp-Terminal-body {
+  padding: 8px;
+}
+
+.jp-Terminal-body .xterm-viewport:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: var(--jp-brand-color1);
+  outline-offset: -2px;
+}
+
+[data-term-theme='inherit'] .xterm .xterm-screen canvas {
+  border: var(--jp-border-width) solid var(--jp-layout-color0);
+}
+
+[data-term-theme='light'] .xterm .xterm-screen canvas {
+  border: var(--jp-border-width) solid #fff;
+}
+
+[data-term-theme='dark'] .xterm .xterm-screen canvas {
+  border: var(--jp-border-width) solid #000;
+}
