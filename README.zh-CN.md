@@ -228,8 +228,29 @@ cd jupyter-studio
 # 一键 bootstrap（venv + Python 依赖 + Lab 构建 + 桌面壳）
 ./install.sh             # macOS / Linux
 ./install.ps1            # Windows PowerShell
+```
 
-# 或手工分步：
+**或手工分步：** 若不使用上面的脚本，请先在仓库根目录创建虚拟环境并激活（默认目录 `.venv`，与 `install.ps1` 一致），再执行后面的 `pip` / `jlpm` 命令。
+
+macOS / Linux：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Windows（PowerShell；若提示脚本策略受限，可先执行 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`）：
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+若在 Windows 上遇到激活、`jupyter` 指向错误路径、或可编辑 JupyterLab 安装时 Yarn / 符号链接报错，请参阅 **本节下方 [Windows 与虚拟环境排错](#windows-venv-troubleshooting-zh)**。
+
+然后在已激活的环境中：
+
+```bash
 pip install -e ./clawcode
 pip install -e ./jupyter_studio_ai
 cd open-jupyter/jupyterlab-main && jlpm install && jlpm run build:dev
@@ -237,6 +258,40 @@ jupyter lab --dev-mode
 ```
 
 完整开发流程见 [`dev.md`](open-jupyter/dev.md)，集成实现细节见 [`JUPYTERLAB_AI_INTEGRATION.md`](JUPYTERLAB_AI_INTEGRATION.md)。
+
+<a id="windows-venv-troubleshooting-zh"></a>
+
+### Windows 与虚拟环境排错（install.ps1 / 源码构建）
+
+**`Activate.ps1` 从哪来。** 安装脚本执行 `python -m venv`，由标准库在 **`.venv\Scripts\`** 下生成 **`Activate.ps1`**、`activate.bat` 等，不是 `install.ps1` 单独写的文件。
+
+**PowerShell 里跑 `activate.bat`「没反应」。** 在 PowerShell 中执行 `activate.bat` 往往在子进程 **`cmd` 里改环境**，进程结束即还原，**当前 PowerShell 会话不会保持激活状态**。请改用：
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+若提示无法加载脚本，可先执行一次：`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`。也可在 **命令提示符（cmd）** 里运行 `.venv\Scripts\activate.bat`；或不激活、直接调用 **`.\.venv\Scripts\python.exe -m pip …`**。
+
+**不使用激活脚本、手动等同激活（PowerShell）。** 仅在当前终端会话有效，效果接近 `Activate.ps1`（设置 `PATH` 与 `VIRTUAL_ENV`）；**提示符不会出现** `(.venv)`：
+
+```powershell
+$venv = (Resolve-Path .\.venv).Path
+$env:VIRTUAL_ENV = $venv
+Remove-Item Env:PYTHONHOME -ErrorAction SilentlyContinue
+$env:PATH = "$venv\Scripts;$env:PATH"
+```
+
+请在仓库根目录执行；若虚拟环境不在 `.venv`（参见 [`install.ps1`](install.ps1) 的 `-VenvPath`），请将 `$venv` 改为对应目录路径。
+
+**`jupyter` / `jupyter.exe` 仍指向别的盘（例如仓库已迁到 `C:\`，启动器却找 `D:\…\python.exe`）。** Windows 上 Pip 生成的 **`jupyter.exe` 会把安装当时的 `python.exe` 绝对路径写进启动器**。把 **整个 `.venv` 从另一路径复制/迁移**、或 **`pip install` 在旧路径做过、可执行文件没重装**，就会出现 `Fatal error in launcher: Unable to create process using '"D:\…\python.exe"' …`。处理方式：
+
+- **推荐**：删掉仓库根目录的 **`.venv`**，在最终使用的路径上 **重新运行 [`install.ps1`](install.ps1)**（或在该路径下重装依赖）。**不要将 `.venv` 整夹复制到其他盘或另一台机器。**
+- **临时绕过**：在当前已激活的环境里使用 **`python -m jupyter lab …`**（不经过坏的 `jupyter.exe`）。
+- **修复启动器**：在已激活 venv 中执行 `python -m pip install --force-reinstall jupyter-core jupyterlab`（或删掉 `.venv` 后重装）。
+
+**可编辑安装 JupyterLab 时 `yarn install` 失败（如 `node_modules\@jupyterlab\buildutils` 相关 `EISDIR` / 符号链接错误）。** Yarn 需要对 workspace 目录做链接；在 Windows 上若 **`open-jupyter/jupyterlab-main/node_modules` 不完整或残留**，或 **无创建符号链接权限**，容易失败。可尝试：删除 **`jupyterlab-main/node_modules`**，在系统设置中打开 **「隐私和安全性 → 开发者选项 → 开发人员模式」**，然后重新运行 `install.ps1` 或 `pip install -e open-jupyter/jupyterlab-main[dev]`。日志里 **`YN0002` 等 peer 依赖告警**多数是 **提示**，通常不是根本原因。
+
 
 <img width="2333" height="1496" alt="Screenshot - 2026-05-14 13 05 23" src="https://github.com/user-attachments/assets/5c6e03ac-361b-46ba-97a7-54d00a8d0fee" />
 
