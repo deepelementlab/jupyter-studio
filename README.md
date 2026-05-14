@@ -192,32 +192,67 @@ A deeper dive lives in [`JUPYTERLAB_AI_INTEGRATION.md`](JUPYTERLAB_AI_INTEGRATIO
 
 ## 🔌 Bring Your Own Model
 
-Jupyter Studio is provider-agnostic. Configure once, switch any time.
+Jupyter Studio AI Coder reads **credentials, provider endpoints, default model slots, and the active coder (`agents.coder`)** from **[ClawCode](https://github.com/deepelementlab/jupyter-studio/tree/main/clawcode)** configuration: a JSON file conventionally named `.clawcode.json`.
 
-```yaml
-# ~/.jupyter/jupyter_studio_ai.yaml
-default_model: claude-3-7-sonnet
-providers:
-  anthropic:
-    api_key: ${ANTHROPIC_API_KEY}
-  openai:
-    api_key: ${OPENAI_API_KEY}
-  google:
-    api_key: ${GEMINI_API_KEY}
-  ollama:
-    base_url: http://localhost:11434
-  # any OpenAI-compatible endpoint
-  custom:
-    base_url: https://your-gateway.internal/v1
-    api_key: ${INTERNAL_KEY}
+### Where Jupyter looks for `.clawcode.json`
+
+The [`jupyter_studio_ai` extension](jupyter_studio_ai/jupyter_studio_ai/extension.py) resolves the config in this **first-hit-wins** order:
+
+1. **`$CLAWCODE_CONFIG`** — absolute path to your JSON file, if set.
+2. **`<Jupyter notebook root>/.clawcode.json`** — `jupyter_server`'s `--notebook-dir` / root (the directory you browse in Jupyter).
+3. **`<notebook root>/clawcode/.clawcode.json`**
+4. **Next to an editable [`clawcode`](clawcode/) install** (e.g. monorepo `clawcode/.clawcode.json` when developing this repo).
+5. **`~/.config/clawcode/.clawcode.json`**
+6. **`~/.clawcode.json`**
+
+Restart `jupyter lab` after editing the file (or reload the kernel/server) so the extension reloads settings.
+
+### Minimal example (API keys & default model)
+
+Copy and adapt from **[`clawcode/.clawcode_template.json`](clawcode/.clawcode_template.json)** — it lists every provider slot and field. Typical shape:
+
+```json
+{
+  "providers": {
+    "openai": {
+      "api_key": "sk-your-key",
+      "base_url": null,
+      "disabled": false,
+      "timeout": 120,
+      "models": ["gpt-4o", "gpt-4o-mini"]
+    },
+    "openai_deepseek": {
+      "api_key": "your-deepseek-key",
+      "base_url": "https://api.deepseek.com",
+      "disabled": false,
+      "timeout": 120,
+      "models": ["deepseek-chat", "deepseek-reasoner"]
+    }
+  },
+  "agents": {
+    "coder": {
+      "model": "gpt-4o",
+      "provider_key": "openai",
+      "max_tokens": 8192,
+      "reasoning_effort": "medium",
+      "temperature": null
+    }
+  }
+}
 ```
 
-Local-only mode (no calls leave your machine):
+- **`providers.<slot>`**: one logical gateway (`api_key`, optional `base_url` for OpenAI-compatible APIs, `models` picker list). Set **`disabled`** to omit a slot from the UI.
+- **`agents.coder`**: defines the notebook chat / agent default; **`provider_key`** must match a key under **`providers`**.
+- The JupyterLab sidebar can **switch models at runtime**; persisting there updates the **coder** entry in `.clawcode.json` when you opt in.
 
-```bash
-export JUPYTER_STUDIO_MODEL=ollama/qwen2.5-coder:14b
-jupyter lab
-```
+### Env vars & secrets
+
+Prefer putting keys in `.clawcode.json` locally (never commit secrets). Some ClawCode provider paths also honor standard env vars (e.g. `OPENAI_API_KEY` when using the built-in OpenAI slot); see **`clawcode`** config docs inside that package for **`CLAWCODE_*`** conventions.
+
+### Desktop shell (Open Jupyter)
+
+When the desktop app starts Jupyter from a given working directory, **that directory is the notebook root** for lookup **(steps 2–3 above)** unless you point **`CLAWCODE_CONFIG`** at a fixed file globally.
+
 
 ---
 
