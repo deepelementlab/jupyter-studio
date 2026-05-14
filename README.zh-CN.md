@@ -190,32 +190,67 @@ flowchart LR
 
 ## 🔌 自由切换模型
 
-Jupyter Studio 与模型解耦，配置一次随时换：
+Jupyter Studio 的 AI Coder 会通过 **[ClawCode](https://github.com/deepelementlab/jupyter-studio/tree/main/clawcode)** 读取 **密钥、网关地址、可选模型列表，以及默认的 `agents.coder` 绑定**，配置文件一般为 **`.clawcode.json`**（JSON）。
 
-```yaml
-# ~/.jupyter/jupyter_studio_ai.yaml
-default_model: claude-3-7-sonnet
-providers:
-  anthropic:
-    api_key: ${ANTHROPIC_API_KEY}
-  openai:
-    api_key: ${OPENAI_API_KEY}
-  google:
-    api_key: ${GEMINI_API_KEY}
-  ollama:
-    base_url: http://localhost:11434
-  # 任意 OpenAI 兼容端点
-  custom:
-    base_url: https://your-gateway.internal/v1
-    api_key: ${INTERNAL_KEY}
+### `.clawcode.json` 的查找顺序
+
+[`jupyter_studio_ai` 扩展](jupyter_studio_ai/jupyter_studio_ai/extension.py) 按下述顺序 **先到先得**：
+
+1. 环境变量 **`$CLAWCODE_CONFIG`** —— 指向你的 JSON 文件绝对路径；
+2. **`<Jupyter 笔记本根目录>/.clawcode.json`** —— `jupyter_server` 的 `--notebook-dir` / 根路径（用户在文件浏览器中看到的工作区根目录）；
+3. **`<笔记本根>/clawcode/.clawcode.json`**
+4. **可编辑安装的 [`clawcode`](clawcode/) 旁的仓库布局**（例如在本仓库中单机开发时为 `clawcode/.clawcode.json`）；
+5. **`~/.config/clawcode/.clawcode.json`**
+6. **`~/.clawcode.json`**
+
+修改配置文件后建议 **重启 `jupyter lab`**（或重启 Jupyter 服务器），以便扩展重新加载配置。
+
+### 最小示例（API Key 与默认模型）
+
+可复制并删减 **[`clawcode/.clawcode_template.json`](clawcode/.clawcode_template.json)**，其中列出了各 provider 字段。常见结构示例：
+
+```json
+{
+  "providers": {
+    "openai": {
+      "api_key": "sk-your-key",
+      "base_url": null,
+      "disabled": false,
+      "timeout": 120,
+      "models": ["gpt-4o", "gpt-4o-mini"]
+    },
+    "openai_deepseek": {
+      "api_key": "your-deepseek-key",
+      "base_url": "https://api.deepseek.com",
+      "disabled": false,
+      "timeout": 120,
+      "models": ["deepseek-chat", "deepseek-reasoner"]
+    }
+  },
+  "agents": {
+    "coder": {
+      "model": "gpt-4o",
+      "provider_key": "openai",
+      "max_tokens": 8192,
+      "reasoning_effort": "medium",
+      "temperature": null
+    }
+  }
+}
 ```
 
-完全本地模式（代码不出机）：
+- **`providers.<槽位名>`**：一个网关/API 账户（**`api_key`**、可选 **`base_url`** 用于 OpenAI 兼容接口、右侧模型下拉用的 **`models`**）。**`disabled: true`** 可在 UI 中隐藏该槽位。
+- **`agents.coder`**：Notebook 侧边栏聊天的默认 coder；**`provider_key`** 必须与 **`providers`** 下的某一键一致。
+- JupyterLab 里可以 **运行时切换模型**；若勾选持久化会写回 **`agents.coder`**（见侧边栏交互）。
 
-```bash
-export JUPYTER_STUDIO_MODEL=ollama/qwen2.5-coder:14b
-jupyter lab
-```
+### 环境变量与其它密钥写法
+
+密钥优先放在本地的 `.clawcode.json`（**切勿把真实 Key 提交到 Git**）。部分 ClawCode 内置 provider 仍会回退读取常见环境变量（例如 OpenAI slot 可用的 **`OPENAI_API_KEY`**）；更完整的 **`CLAWCODE_*`** 约定见 **`clawcode`** 包内文档。
+
+### Open Jupyter 桌面应用
+
+桌面应用启动 Jupyter 时所使用的 **工作目录即笔记本根**，用于触发上述 **（2）（3）** 条查找；除非你全局设置 **`CLAWCODE_CONFIG`** 指向固定文件。
+
 
 ---
 
