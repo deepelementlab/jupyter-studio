@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyter_studio_ai"
+version = "0.1.0"
+description = "JupyterLab server extension exposing the clawcode coder agent as an AI assistant"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Jupyter Studio AI" }]
+keywords = ["jupyter", "jupyterlab", "ai", "agent", "coder", "clawcode"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Jupyter",
+    "Framework :: Jupyter :: JupyterLab",
+    "Framework :: Jupyter :: JupyterLab :: 4",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "jupyter_server>=2.10.0",
+    "tornado>=6.3",
+    "pydantic>=2.0.0",
+    "orjson>=3.9.0",
+    # NOTE: clawcode is not on PyPI yet; the installer (install.ps1 / install.sh)
+    # installs it editable from ../clawcode BEFORE this package, so a plain name
+    # reference here is enough and avoids relative-path resolution issues
+    # (a `file:../clawcode` URL was failing because pip resolves the relative
+    # path against the *current working directory*, not against this pyproject).
+    "clawcode>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.6.0",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["jupyter_studio_ai"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyter-config/jupyter_server_config.d" = "etc/jupyter/jupyter_server_config.d"
+
+[project.entry-points."jupyter_server.extensions"]
+jupyter_studio_ai = "jupyter_studio_ai.extension:JupyterStudioAiApp"
