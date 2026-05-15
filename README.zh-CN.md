@@ -256,6 +256,8 @@ Jupyter Studio 的 AI Coder 会通过 **[ClawCode](https://github.com/deepelemen
 
 ## 🛠 开发者快速上手
 
+### 正常只需要三步
+
 ```bash
 git clone https://github.com/deepelementlab/jupyter-studio.git
 cd jupyter-studio
@@ -263,6 +265,10 @@ cd jupyter-studio
 # 一键 bootstrap（venv + Python 依赖 + Lab 构建 + 桌面壳）
 ./install.sh             # macOS / Linux
 ./install.ps1            # Windows PowerShell
+
+# 激活env，启动jupyterlab
+.\.venv\Scripts\Activate.ps1
+jupyter lab --dev-mode --notebook-dir="C:\test\jupyter-studio"
 ```
 
 **或手工分步：** 若不使用上面的脚本，请先在仓库根目录创建虚拟环境并激活（默认目录 `.venv`，与 `install.ps1` 一致），再执行后面的 `pip` / `jlpm` 命令。
