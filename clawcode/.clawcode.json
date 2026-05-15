@@ -1,0 +1,480 @@
+{
+  "data": {
+    "directory": ".clawcode"
+  },
+  "providers": {
+    "openrouter": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "qwen/qwen3.6-plus",
+        "openai/gpt-4o",
+        "anthropic/claude-3.5-sonnet",
+        "google/gemini-pro-1.5",
+        "deepseek/deepseek-chat",
+        "meta-llama/llama-3.3-70b-instruct"
+      ]
+    },
+    "anthropic": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "claude-sonnet-4-20250514",
+        "claude-3-5-sonnet-20241022",
+        "claude-3-5-haiku-20241022",
+        "claude-3-opus-20240229"
+      ]
+    },
+    "anthropic_shengsuanyun": {
+      "api_key": "",
+      "base_url": "https://router.shengsuanyun.com/api",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-opus-4.6",
+        "anthropic/claude-opus-4.5",
+        "anthropic/claude-sonnet-4.5:thinking",
+        "anthropic/claude-sonnet-4",
+        "anthropic/claude-opus-4",
+        "anthropic/claude-3.7-sonnet:thinking",
+        "anthropic/claude-3.7-sonnet",
+        "gpt-5.4",
+        "gpt-5.4-nano",
+        "gpt-5.3-codex",
+        "gpt-5.3-chat"
+      ]
+    },
+    "openai": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-4-turbo",
+        "o4-mini",
+        "o3-mini"
+      ]
+    },
+    "gemini": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "gemini-2.0-flash",
+        "gemini-1.5-pro",
+        "gemini-1.5-flash"
+      ]
+    },
+    "groq": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "mixtral-8x7b-32768"
+      ]
+    },
+    "xai": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "grok-2-latest",
+        "grok-2-vision-latest",
+        "grok-beta"
+      ]
+    },
+    "azure_openai": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-35-turbo"
+      ]
+    },
+    "bedrock": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "anthropic.claude-3-5-sonnet-20241022-v2:0",
+        "anthropic.claude-3-haiku-20240307-v1:0"
+      ]
+    },
+    "copilot": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "gpt-4o"
+      ]
+    },
+    "openai_deepseek": {
+      "api_key": "",
+      "base_url": "https://api.deepseek.com",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "deepseek-v4-pro",
+        "deepseek-chat",
+        "deepseek-reasoner"
+      ]
+    },
+    "openai_glm": {
+      "api_key": "",
+      "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "glm-5.1",
+        "glm-5",
+        "glm-4.7",
+        "glm-4.6"
+      ]
+    },
+    "openai_qwen": {
+      "api_key": "",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_qwen_intl": {
+      "api_key": "",
+      "base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_qwen_us": {
+      "api_key": "",
+      "base_url": "https://dashscope-us.aliyuncs.com/compatible-mode/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_qwen_finance": {
+      "api_key": "",
+      "base_url": "https://dashscope-finance.aliyuncs.com/compatible-mode/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "qwen-plus",
+        "qwen-turbo",
+        "qwen-max",
+        "qwen-flash",
+        "qwen-long",
+        "qwen2.5-coder-32b-instruct",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "qwen-vl-max-latest",
+        "qwq-32b-preview"
+      ]
+    },
+    "openai_moonshot": {
+      "api_key": "",
+      "base_url": "https://api.moonshot.cn/v1",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "moonshot-v1-8k",
+        "moonshot-v1-32k",
+        "moonshot-v1-128k",
+        "kimi-k2-turbo-preview",
+        "kimi-k2.5"
+      ]
+    },
+    "openai_mistral": {
+      "api_key": "",
+      "base_url": "https://api.mistral.ai/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "mistral-large-latest",
+        "mistral-small-latest",
+        "pixtral-12b-2409",
+        "codestral-latest"
+      ]
+    },
+    "openai_together": {
+      "api_key": "",
+      "base_url": "https://api.together.xyz/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+        "Qwen/Qwen2.5-72B-Instruct-Turbo"
+      ]
+    },
+    "openai_fireworks": {
+      "api_key": "",
+      "base_url": "https://api.fireworks.ai/inference/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "accounts/fireworks/models/llama-v3p3-70b-instruct",
+        "accounts/fireworks/models/qwen2p5-72b-instruct"
+      ]
+    },
+    "openai_siliconflow": {
+      "api_key": "",
+      "base_url": "https://api.siliconflow.cn/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "deepseek-ai/DeepSeek-V3",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ]
+    },
+    "openai_novita": {
+      "api_key": "",
+      "base_url": "https://api.novita.ai/v3/openai",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "deepseek/deepseek_v3",
+        "meta-llama/llama-3.3-70b-instruct"
+      ]
+    },
+    "openai_perplexity": {
+      "api_key": "",
+      "base_url": "https://api.perplexity.ai",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "sonar",
+        "sonar-pro",
+        "sonar-reasoning"
+      ]
+    },
+    "openai_cohere": {
+      "api_key": "",
+      "base_url": "https://api.cohere.com/compatibility/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "command-r-plus",
+        "command-r",
+        "command-r7b-12-2024"
+      ]
+    },
+    "openai_minimax": {
+      "api_key": "",
+      "base_url": "https://api.minimaxi.com/v1",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "MiniMax-M2.7",
+        "MiniMax-M2.7-highspeed",
+        "MiniMax-M2.5",
+        "MiniMax-M2.5-highspeed",
+        "MiniMax-M2.1",
+        "MiniMax-M2.1-highspeed",
+        "MiniMax-M2",
+        "abab6.5s-chat",
+        "abab6.5g-chat",
+        "abab6.5t-chat"
+      ]
+    },
+    "openai_baichuan": {
+      "api_key": "",
+      "base_url": "https://api.baichuan-ai.com/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "Baichuan4-Turbo",
+        "Baichuan3-Turbo"
+      ]
+    },
+    "openai_stepfun": {
+      "api_key": "",
+      "base_url": "https://api.stepfun.com/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "step-2-16k",
+        "step-1-8k"
+      ]
+    },
+    "openai_deepinfra": {
+      "api_key": "",
+      "base_url": "https://api.deepinfra.com/v1/openai",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "meta-llama/Meta-Llama-3.1-70B-Instruct",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ]
+    },
+    "openai_nebius": {
+      "api_key": "",
+      "base_url": "https://api.studio.nebius.ai/v1",
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "meta-llama/Meta-Llama-3.1-70B-Instruct-fast"
+      ]
+    },
+    "openai_lepton": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "llama3-70b"
+      ]
+    },
+    "openai_vertex": {
+      "api_key": "",
+      "base_url": null,
+      "disabled": true,
+      "timeout": 120,
+      "models": [
+        "gemini-1.5-pro",
+        "gemini-1.5-flash"
+      ]
+    },
+    "openai_volcengine": {
+      "api_key": "",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "disabled": false,
+      "timeout": 120,
+      "models": [
+        "doubao-seed-2-0-lite-260215",
+        "doubao-seedream-5-0-260128",
+        "doubao-seedance-2-0-260128"
+      ]
+    }
+  },
+  "agents": {
+    "coder": {
+      "model": "glm-5",
+      "max_tokens": 8192,
+      "reasoning_effort": "medium",
+      "temperature": null,
+      "provider_key": "openai_glm"
+    },
+    "task": {
+      "model": "deepseek-reasoner",
+      "max_tokens": 8192,
+      "reasoning_effort": "medium",
+      "temperature": null,
+      "provider_key": "openai_deepseek"
+    },
+    "title": {
+      "model": "deepseek-reasoner",
+      "max_tokens": 100,
+      "reasoning_effort": "medium",
+      "temperature": null,
+      "provider_key": "openai_deepseek"
+    },
+    "summarizer": {
+      "model": "deepseek-reasoner",
+      "max_tokens": 4096,
+      "reasoning_effort": "medium",
+      "temperature": null,
+      "provider_key": "openai_deepseek"
+    }
+  },
+  "tui": {
+    "theme": "catppuccin",
+    "mouse_enabled": true,
+    "save_theme_preference": true,
+    "external_editor": "",
+    "display_version": "0.1.2"
+  },
+  "shell": {
+    "path": "cmd.exe",
+    "args": []
+  },
+  "lsp": {
+    "python": {
+      "disabled": false,
+      "command": "pylsp",
+      "args": [],
+      "options": {}
+    },
+    "go": {
+      "disabled": false,
+      "command": "gopls",
+      "args": [],
+      "options": {}
+    },
+    "typescript": {
+      "disabled": false,
+      "command": "typescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "options": {}
+    }
+  },
+  "sourcegraph": {
+    "url": "https://sourcegraph.com",
+    "access_token": null,
+    "enabled": false
+  },
+  "auto_compact": true,
+  "context_paths": [
+    ".github/copilot-instructions.md",
+    ".cursorrules",
+    ".cursor/rules/",
+    "CLAUDE.md",
+    "clawcode.md"
+  ],
+  "debug": false,
+  "debug_lsp": false,
+  "debug_llm": false,
+  "closed_loop": {
+    "flush_max_writes": 2
+  }
+}
