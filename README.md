@@ -258,6 +258,8 @@ When the desktop app starts Jupyter from a given working directory, **that direc
 
 ## 🛠 Developer quickstart
 
+### Typically, only three steps are needed.
+
 ```bash
 git clone https://github.com/deepelementlab/jupyter-studio.git
 cd jupyter-studio
@@ -265,6 +267,11 @@ cd jupyter-studio
 # Bootstrap everything (venv + python deps + lab build + desktop shell)
 ./install.sh             # macOS / Linux
 ./install.ps1            # Windows PowerShell
+
+# Activate the environment, then start Jupyter Studio.
+.\.venv\Scripts\Activate.ps1
+jupyter lab --dev-mode --notebook-dir="C:\test\jupyter-studio"
+
 ```
 
 **Or step-by-step:** if you skip the scripts above, create and activate a virtual environment at the repo root first (default `.venv`, same as `install.ps1`), then run the `pip` / `jlpm` commands below.
